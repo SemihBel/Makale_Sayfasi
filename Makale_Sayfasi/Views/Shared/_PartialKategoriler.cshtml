@@ -1,0 +1,20 @@
+﻿@*@using Makale.BusinessLayer*@
+@using Makale_Sayfasi.Models
+@using Makale.Entities
+@{ 
+    //KategoriYonet kategoriYonet = new KategoriYonet();
+    List<Kategori> liste = CacheHelper.KategoriCache();
+}
+
+
+<p class="lead">Kategoriler</p>
+<div class="list-group">
+    <a href="/Home/Index" class="list-group-item"><span class="glyphicon glyphicon-align-right"></span>&nbsp;Tümü</a>
+
+
+    @foreach (Kategori kategori in liste)
+    {
+        <a href="/Home/Kategori/@kategori.Id" class="list-group-item"title="@kategori.Aciklama"><span class="glyphicon glyphicon-align-right"></span>&nbsp;@kategori.Baslik</a>
+    }
+
+</div>

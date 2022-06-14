@@ -1,0 +1,77 @@
+﻿@using Makale.Entities
+
+
+@model List<Yorum>
+@*<link href="~/Content/validation-summary.css" rel="stylesheet" />*@
+@{ Kullanici kullanici = (Kullanici)Session["login"];
+
+}
+
+@foreach (var item in Model)
+{
+    <div class="media">
+        <div class="media-left media-top">
+
+            <div class="media-object">
+                <span class="glyphicon glyphicon-comment">
+
+                </span>
+            </div>
+            @*<a href="#">
+                    <img class="media-object" src="..." alt="...">
+                </a>*@
+        </div>
+        <div class="media-body">
+            <div>
+                <span class="col-md-10" style="width:450px;" id="yorum_@item.Id" contenteditable="false">
+                    @item.YorumMetni
+                </span>
+                @if (kullanici != null && kullanici.Id == item.Kullanici.Id)
+                {
+                    <span class="col-md-2 text-right">
+                        <button type="button" class="btn btn-warning btn-xs" data-editmode="false" onclick="yorumislem(this, 'edit',@item.Id, '#yorum_@item.Id')">
+                            <span class="glyphicon glyphicon-edit"></span>
+                        </button>
+                        <button type="button" class="btn btn-danger btn-xs" onclick="yorumislem(this, 'delete',@item.Id)">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </button>
+                    </span>
+                }
+
+
+                <small class="col-md-12 text-right">
+                    <span class="glyphicon glyphicon-time">@item.DegistirmeTarihi</span>
+                    <span class="glyphicon glyphicon-user">@item.Kullanici.KullaniciAdi</span>
+                </small>
+            </div>
+
+
+
+        </div>
+    </div>
+}
+
+@if (kullanici != null)
+{
+    <div class="row">
+        <div class="col-md-12">
+            <hr />
+        </div>
+    </div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="input-group">
+            <input type="text" id="yorum_text" class="form-control" placeholder="Yorumunuz...">
+            <span class="input-group-btn">
+                <button class="btn btn-success" type="button" onclick="yorumislem(this,'yorumekle',-1)"><span class="glyphicon glyphicon-send"></span>
+                Gönder</button>
+            </span>
+        </div><!-- /input-group -->
+    </div>
+</div>
+   
+  
+}
+
+

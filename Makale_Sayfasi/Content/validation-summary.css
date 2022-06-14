@@ -1,0 +1,16 @@
+﻿.validation-summary-errors{
+    border:2px dotted azure;
+    background-color:palevioletred;
+    border-radius:5px;
+    margin-bottom:5px;
+    color:white;
+    position:relative;
+    left:14rem;
+    bottom:4rem;
+    width:200px;
+
+}
+.validation-summary-errors ul{
+    list-style-type:none;
+    padding:10px;
+}
